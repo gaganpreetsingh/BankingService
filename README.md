@@ -27,21 +27,23 @@ access token: 58426cb8-011c-4d5a-ae78-95c7bac85bcc<br/>
  c) smeng107 (BANKER)<br/>
  <br/>
 4. Copy above access token to get authorize and Add Authorization Header : Bearer {access-token} to access all APIs:<br/>
-<b>Service 1 URL: (Fetch Customer Balance)</b><br/>
-http://localhost:8080/api/v1/accounts/ASQ-33171393372/checkBalance
+<b>Account Services</b><br/>:
+<b>Service 1 URL: (Fetch Account Balance)</b><br/>
+http://localhost:8080/api/v1/accounts/ASQ-33171393372/checkBalance<br/>
 
 <b>Service 2 URL: (Get Transactions)</b><br/>
-http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/CR
-http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/DR
-http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/ALL
+http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/CR<br/>
+http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/DR<br/>
+http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/ALL<br/>
 <br/><br/>
 <b>Service 3 URL: (Calculate Interest on given A/c)</b><br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/calculateInterest/<br/>
 <br/>
+<b>Customet Services</b><br/>:
 <b>Service 4 URL: (Get Customer's all accounts Transactions)</b><br/>
-http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/CR
-http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/DR
-http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/ALL
+http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/CR<br/>
+http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/DR<br/>
+http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/ALL<br/>
 <br/>
 <b>Service 5 URL: (Calculate Interest on Customer's all A/cs)</b><br/>
 http://localhost:8080/api/v1/customers/GAGAN001/calculateInterest/<br/>
