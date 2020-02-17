@@ -35,7 +35,7 @@ http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/CR
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/DR
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/accActType/ALL
 <br/><br/>
-<b>Service 3 URL: (Calculate Interest on Customer's all accounts on daily basis)</b><br/>
+<b>Service 3 URL: (Calculate Interest on given A/c)</b><br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/calculateInterest/<br/>
 <br/>
 <b>Service 4 URL: (Get Customer's all accounts Transactions)</b><br/>
@@ -43,6 +43,6 @@ http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/CR
 http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/DR
 http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/ALL
 <br/>
-<b>Service 5 URL: (Get Customer's all account Transactions)</b><br/>
+<b>Service 5 URL: (Calculate Interest on Customer's all A/cs)</b><br/>
 http://localhost:8080/api/v1/customers/GAGAN001/calculateInterest/<br/>
 <br/>
