@@ -1,3 +1,9 @@
+<b>Main class: </b>Run OperateBankAccountApplication.class file <br/>
+
+Below SQL scripts would be picked by Spring boot for DB Schema creation and Initial Data Setup :<br/>
+<b>schema.sql :</b> Refers to DB schema setup<br/>
+<b>data.sql:</b> Refers to initial data setup<br/>
+***************************************************
 <b>1. Access H2 DB: </b><br/>
 http://localhost:8080/h2-console/<br/>
 <b>JDBC URL:</b> jdbc:h2:mem:bankdb<br/>
@@ -40,8 +46,3 @@ http://localhost:8080/api/v1/customers/GAGAN001/txs/accActType/ALL
 <b>Service 5 URL: (Get Customer's all account Transactions)</b><br/>
 http://localhost:8080/api/v1/customers/GAGAN001/calculateInterest/<br/>
 <br/>
-<b>Main class: </b>Run OperateBankAccountApplication.class file <br/>
-
-Below SQL scripts would be picked by Spring boot for DB Schema creation and Initial Data Setup :<br/>
-<b>schema.sql :</b> Refers to DB schema setup<br/>
-<b>data.sql:</b> Refers to initial data setup<br/>
