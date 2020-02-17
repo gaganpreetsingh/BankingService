@@ -1,10 +1,5 @@
 package com.gagan.banking.rest;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,8 +25,6 @@ public class CustomerControllerTest {
 	@Autowired
 	ConfigProperties configProp;
 
-	private String authUserAccessToken;
-
 	private String getBaseURL() {
 		return "http://localhost:" + port;
 	}
@@ -48,29 +41,11 @@ public class CustomerControllerTest {
 		txTypeCode = "CR";
 	}
 
-	@Before
-	public void obtainAccessToken() {
-		final Map<String, String> params = new HashMap<String, String>();
-		params.put("grant_type", "password");
-		params.put("username", "super.user");
-		params.put("password", "password");
-		Response response = RestAssured.given().auth().preemptive().basic("trusted-client", configProp.getSecretKey())
-				.and().with().params(params).when().post(getBaseURL() + "/oauth/token");
-
-		authUserAccessToken = response.jsonPath().getString("access_token");
-	}
-
-	@Test
-	public void test_apis_without_access_token() {
-		Response response = RestAssured.get(getAPIEndpoint());
-		assertEquals(HttpStatus.UNAUTHORIZED.value(), response.getStatusCode());
-	}
-
 	@Test
 	public void test_customer_account_transactions_with_valid_cust_login() {
 		RestAssured.baseURI = getAPIEndpoint();
 
-		Response response = RestAssured.given().header("Authorization", "Bearer " + authUserAccessToken)
+		Response response = RestAssured.given()
 				.get(custLogin + "/txs/txType/" + txTypeCode);
 		JsonPath jsonPath = response.jsonPath();
 		Assert.assertNotNull(jsonPath.getString("result"));
@@ -81,7 +56,7 @@ public class CustomerControllerTest {
 	public void test_customer_account_transactions_with_invalid_cust_login() {
 		RestAssured.baseURI = getAPIEndpoint();
 		custLogin = "Invalid";
-		Response response = RestAssured.given().header("Authorization", "Bearer " + authUserAccessToken)
+		Response response = RestAssured.given()
 				.get(custLogin + "/txs/txType/" + txTypeCode);
 		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
@@ -90,7 +65,7 @@ public class CustomerControllerTest {
 	public void test_calculate_interest_with_valid_cust_login() {
 		RestAssured.baseURI = getAPIEndpoint();
 
-		Response response = RestAssured.given().header("Authorization", "Bearer " + authUserAccessToken)
+		Response response = RestAssured.given()
 				.get(custLogin + "/calculateInterest/");
 		JsonPath jsonPath = response.jsonPath();
 		Assert.assertNotNull(jsonPath.getString("result"));
@@ -101,7 +76,7 @@ public class CustomerControllerTest {
 	public void test_calculate_interest_with_invalid_cust_login() {
 		RestAssured.baseURI = getAPIEndpoint();
 		custLogin = "InvalidCust";
-		Response response = RestAssured.given().header("Authorization", "Bearer " + authUserAccessToken)
+		Response response = RestAssured.given()
 				.get(custLogin + "/calculateInterest/");
 		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
