@@ -7,7 +7,7 @@ http://localhost:8080/h2-console/<br/>
 <b>2. Swagger UI:</b>
 http://localhost:8080/swagger-ui.html
 
-<b>3. Access below endpoints
+<b>3. Access below endpoints:</b><br/>
 <b>Service 1 URL: (Fetch Customer Balance)</b><br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/checkBalance
 
@@ -15,7 +15,7 @@ http://localhost:8080/api/v1/accounts/ASQ-33171393372/checkBalance
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/txType/CR<br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/txType/DR<br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/txs/txType/ALL<br/>
-<br/><br/>
+<br/>
 <b>Service 3 URL: (Calculate Interest on Customer's all accounts on daily basis)</b><br/>
 http://localhost:8080/api/v1/accounts/ASQ-33171393372/calculateInterest/<br/>
 <br/>
