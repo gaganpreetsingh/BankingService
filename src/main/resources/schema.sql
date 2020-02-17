@@ -1,0 +1,58 @@
+CREATE TABLE TB_BNK_CUST (
+  cust_id INT AUTO_INCREMENT  PRIMARY KEY,
+  cust_login VARCHAR(20) UNIQUE,
+  cust_fname VARCHAR(50) NOT NULL,
+  cust_lname VARCHAR(50) NOT NULL,
+  email VARCHAR(100) DEFAULT NULL,
+  active BOOLEAN DEFAULT 1,
+  interest_rate DOUBLE DEFAULT -1
+);
+
+CREATE TABLE TB_CUST_ACCT (
+  acc_id INT AUTO_INCREMENT  PRIMARY KEY,
+  acc_no VARCHAR(15) NOT NULL,
+  acc_typ VARCHAR(50) NOT NULL,
+  cust_id INT,
+  acc_balance DOUBLE,
+  active BOOLEAN DEFAULT 1,
+  int_added_date TIMESTAMP,
+  FOREIGN KEY (cust_id) REFERENCES TB_BNK_CUST(cust_id)
+);
+
+CREATE TABLE USER (
+  user_id INT AUTO_INCREMENT  PRIMARY KEY,
+  username VARCHAR(20) NOT NULL,
+  password VARCHAR(100) NOT NULL,
+  user_fname VARCHAR(50) NOT NULL,
+  user_lname VARCHAR(50),
+  email VARCHAR(100) DEFAULT NULL,
+  active BOOLEAN DEFAULT 1
+);
+
+CREATE TABLE ROLE (
+  role_id INT AUTO_INCREMENT  PRIMARY KEY,
+  name VARCHAR(10)
+);
+
+CREATE TABLE USER_ROLES(
+	USER_USER_ID INT,
+	ROLES_ROLE_ID INT
+);
+CREATE TABLE ACC_TX_TYPE(
+ 	tx_type_code VARCHAR(4) PRIMARY KEY,
+	tx_type_name VARCHAR(20)
+	
+);
+CREATE TABLE ACC_TX (
+  acc_tx_id INT AUTO_INCREMENT PRIMARY KEY,
+  tx_type_code VARCHAR(4),
+  created_on TIMESTAMP,
+  amount_affected DOUBLE,
+  tx_Status VARCHAR(20),
+  acc_id INT,
+  tx_ref VARCHAR(25),
+  message VARCHAR(100),
+  balance DOUBLE,
+  FOREIGN KEY (acc_id) REFERENCES TB_CUST_ACCT(acc_id),
+  FOREIGN KEY (tx_type_code) REFERENCES ACC_TX_TYPE(tx_type_code)
+);
