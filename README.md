@@ -1,5 +1,8 @@
-<b>1. H2 DB URI</b>
-http://localhost:8080/h2-console/
+<b>1. Access H2 DB: </b><br/>
+http://localhost:8080/h2-console/<br/>
+<b>JDBC URL:</b> jdbc:h2:mem:bankdb<br/>
+<b>Username:</b> gagan<br/>
+<b>Password:</b> preet<br/>
 
 <b>2. Swagger UI:</b>
 http://localhost:8080/swagger-ui.html
