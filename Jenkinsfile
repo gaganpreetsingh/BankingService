@@ -8,8 +8,8 @@ node {
         PATH = "${mvnHome}/bin:$PATH"
     }
     stage 'Build'
-    sh "mvn clean install -DskipTests"
+    sh "${mvnHome}/bin/mvn clean install -DskipTests"
  
     stage 'Test'
-    sh "mvn test"
+    sh "${mvnHome}/bin/mvn test"
 }
