@@ -11,5 +11,5 @@ node {
     sh "${mvnHome}/bin/mvn clean install -DskipTests"
  
     stage 'Test'
-    sh "${mvnHome}/bin/mvn -Dtest='AccountServiceTest' test"
+    sh "${mvnHome}/bin/mvn test"
 }
