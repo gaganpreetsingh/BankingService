@@ -5,11 +5,11 @@ node {
     // Get the maven tool
      def mvnHome = tool 'M3'
     environment : {
-        PATH = "${mvnHome}:$PATH"
+        PATH = "${mvnHome}/bin:$PATH"
     }
     stage 'Build'
-    sh "${mvnHome}/mvn clean install -DskipTests"
+    sh "mvn clean install -DskipTests"
  
     stage 'Test'
-    sh "${mvnHome}/bin/mvn test"
+    sh "mvn test"
 }
