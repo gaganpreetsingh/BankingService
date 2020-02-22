@@ -10,7 +10,6 @@ http://localhost:8080/h2-console/<br/>
 <b>Username:</b> gagan<br/>
 <b>Password:</b> preet<br/>
 
-
 <b>2. Swagger UI:</b>
 http://localhost:8080/swagger-ui.html
 
