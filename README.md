@@ -4,7 +4,6 @@ Below SQL scripts would be picked by Spring boot for DB Schema creation and Init
 <b>schema.sql :</b> Refers to DB schema setup<br/>
 <b>data.sql:</b> Refers to initial data setup<br/>
 *******************************************************
-
 <b>1. Access H2 DB:</b>
 http://localhost:8080/h2-console/<br/>
 <b>JDBC URL:</b> jdbc:h2:mem:bankdb<br/>
