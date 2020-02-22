@@ -3,12 +3,12 @@ node {
     git branch: 'without-spring-security', 
     url: 'https://github.com/gaganpreetsingh/BankingService.git'
     // Get the maven tool
-    
-    // ** NOTE: This 'M3' maven tool must be configured in the global configuration
-    def mvnHome = tool 'M3'
-     
+     def mvnHome = tool 'M3'
+    environment : {
+        PATH = "${mvnHome}:$PATH"
+    }
     stage 'Build'
-    sh "mvn clean install -DskipTests"
+    sh "${mvnHome}/mvn clean install -DskipTests"
  
     stage 'Test'
     sh "${mvnHome}/bin/mvn test"
