@@ -1,21 +1,20 @@
 package com.gagan.banking.rest;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import com.gagan.banking.config.ConfigProperties;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CustomerControllerTest {
 
@@ -35,12 +34,11 @@ public class CustomerControllerTest {
 		return getBaseURL() + "/api/v1/customers/";
 	}
 
-	@Before
-	public void initData() {
+	@BeforeEach
+	public void init() {
 		custLogin = "GAGAN001";
-		txTypeCode = "CR";
+		txTypeCode = "DR";
 	}
-
 	@Test
 	public void test_customer_account_transactions_with_valid_cust_login() {
 		RestAssured.baseURI = getAPIEndpoint();
@@ -48,8 +46,8 @@ public class CustomerControllerTest {
 		Response response = RestAssured.given()
 				.get(custLogin + "/txs/txType/" + txTypeCode);
 		JsonPath jsonPath = response.jsonPath();
-		Assert.assertNotNull(jsonPath.getString("result"));
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.OK.value());
+		assertNotNull(jsonPath.getString("result"));
+		assertTrue(response.getStatusCode() == HttpStatus.OK.value());
 	}
 
 	@Test
@@ -58,7 +56,7 @@ public class CustomerControllerTest {
 		custLogin = "Invalid";
 		Response response = RestAssured.given()
 				.get(custLogin + "/txs/txType/" + txTypeCode);
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 
 	@Test
@@ -68,8 +66,8 @@ public class CustomerControllerTest {
 		Response response = RestAssured.given()
 				.get(custLogin + "/calculateInterest/");
 		JsonPath jsonPath = response.jsonPath();
-		Assert.assertNotNull(jsonPath.getString("result"));
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.OK.value());
+		assertNotNull(jsonPath.getString("result"));
+		assertTrue(response.getStatusCode() == HttpStatus.OK.value());
 	}
 
 	@Test
@@ -78,6 +76,6 @@ public class CustomerControllerTest {
 		custLogin = "InvalidCust";
 		Response response = RestAssured.given()
 				.get(custLogin + "/calculateInterest/");
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 }

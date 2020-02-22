@@ -1,7 +1,7 @@
 package com.gagan.banking.service;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
@@ -11,13 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.gagan.banking.config.ConfigProperties;
 import com.gagan.banking.dao.AccTransactionRepository;
@@ -30,7 +30,8 @@ import com.gagan.banking.model.TransactionStatusEnum;
 import com.gagan.banking.service.impl.AccountServiceImpl;
 import com.gagan.banking.vo.AccTransactionVO;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class AccountServiceTest {
 
 	@InjectMocks
@@ -55,7 +56,7 @@ public class AccountServiceTest {
 	CustAccount custAccount;
 	List<AccTransaction> list = new ArrayList<>();
 
-	@Before
+	@BeforeEach
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		txStatus = TransactionStatusEnum.PROCESSED.name();

@@ -1,23 +1,24 @@
 package com.gagan.banking.rest;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.gagan.banking.config.ConfigProperties;
 import com.jayway.restassured.RestAssured;
 import com.jayway.restassured.path.json.JsonPath;
 import com.jayway.restassured.response.Response;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class AccountControllerTest {
 
@@ -37,7 +38,7 @@ public class AccountControllerTest {
 		return getBaseURL() + "/api/v1/accounts/";
 	}
 
-	@Before
+	@BeforeEach
 	public void initData() {
 		accNo = "ASQ-34571393372";
 		txTypeCode = "CR";
@@ -51,7 +52,7 @@ public class AccountControllerTest {
 				.get(accNo + "/checkBalance");
 		assertEquals(HttpStatus.OK.value(), response.getStatusCode());
 		JsonPath jsonPath = response.jsonPath();
-		Assert.assertNotNull(jsonPath.getDouble("result"));
+		assertNotNull(jsonPath.getDouble("result"));
 	}
 
 	@Test
@@ -60,7 +61,7 @@ public class AccountControllerTest {
 		accNo = "1212";
 		Response response = RestAssured.given()
 				.get(accNo + "/checkBalance");
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 
 	@Test
@@ -69,7 +70,7 @@ public class AccountControllerTest {
 		accNo = null;
 		Response response = RestAssured.given()
 				.get(accNo + "/checkBalance");
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 
 	@Test
@@ -79,8 +80,8 @@ public class AccountControllerTest {
 		Response response = RestAssured.given()
 				.get(accNo + "/txs/txType/" + txTypeCode);
 		JsonPath jsonPath = response.jsonPath();
-		Assert.assertNotNull(jsonPath.getString("result"));
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.OK.value());
+		assertNotNull(jsonPath.getString("result"));
+		assertTrue(response.getStatusCode() == HttpStatus.OK.value());
 	}
 
 	@Test
@@ -89,7 +90,7 @@ public class AccountControllerTest {
 		accNo = "Invalid";
 		Response response = RestAssured.given()
 				.get(accNo + "/txs/txType/" + txTypeCode);
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 
 	@Test
@@ -99,8 +100,8 @@ public class AccountControllerTest {
 		Response response = RestAssured.given()
 				.get(accNo + "/calculateInterest/");
 		JsonPath jsonPath = response.jsonPath();
-		Assert.assertNotNull(jsonPath.getString("result"));
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.OK.value());
+		assertNotNull(jsonPath.getString("result"));
+		assertTrue(response.getStatusCode() == HttpStatus.OK.value());
 	}
 
 	@Test
@@ -109,6 +110,6 @@ public class AccountControllerTest {
 		accNo = "InvalidAcc";
 		Response response = RestAssured.given()
 				.get(accNo + "/calculateInterest/");
-		Assert.assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
+		assertTrue(response.getStatusCode() == HttpStatus.NOT_FOUND.value());
 	}
 }
